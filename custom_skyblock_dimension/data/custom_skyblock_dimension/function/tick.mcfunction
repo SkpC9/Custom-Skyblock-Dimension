@@ -1,6 +1,5 @@
 # 1. 初始化计分板（高频监听望远镜使用计数）
 scoreboard objectives add use_spyglass minecraft.used:minecraft.spyglass
-scoreboard objectives add current_y dummy
 
 # ----------------- 📦 钥匙防伪校验 -----------------
 tag @a remove has_key
@@ -11,8 +10,7 @@ execute as @a[scores={use_spyglass=1..9},tag=!has_key] run scoreboard players se
 
 
 # ----------------- 🛡️ 【子模块分流 1：虚空救援】 -----------------
-execute as @a at @s if dimension minecraft:skyblock_dim store result score @s current_y run data get entity @s Pos[1]
-execute as @a[scores={current_y=..80}] at @s if dimension minecraft:skyblock_dim run function custom_skyblock_dimension:rescue
+execute as @a at @s if dimension minecraft:skyblock_dim if predicate custom_skyblock_dimension:below_y80 run function custom_skyblock_dimension:rescue
 
 
 # ----------------- 🚀 【子模块分流 2：去程（主世界开镜）】 -----------------
