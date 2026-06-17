@@ -22,7 +22,7 @@ execute as @a[scores={use_spyglass=11},tag=has_key] at @s if dimension minecraft
 
 
 # ----------------- 🧼 脏数据日常兜底与洗牌 -----------------
-execute as @a[scores={use_spyglass=11..}] run scoreboard players set @s use_spyglass 0
+execute as @a[scores={use_spyglass=11..}] run scoreboard players set @s use_spyglass 10
 execute as @a[scores={use_spyglass=2..9}] run scoreboard players set @s use_spyglass 0
 
 tag @a remove has_key
