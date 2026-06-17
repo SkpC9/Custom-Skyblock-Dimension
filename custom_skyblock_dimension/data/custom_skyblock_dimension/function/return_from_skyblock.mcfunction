@@ -10,6 +10,9 @@
 # 最后的 ~ ~ ~ 代表 Marker 的绝对坐标。因为没接角度参数，玩家在空岛开镜时的最新视角会被完美继承落地！
 execute as @s at @e[tag=return_point,limit=1,sort=nearest] run tp @s ~ ~ ~
 
+#拔除物理锁：在乱刀砍死 Marker 之前，先以它的位置为基准，解除该区块的强行加载，释放服务器内存
+execute at @e[tag=return_point,limit=1,sort=nearest] run forceload remove ~ ~ ~ ~
+
 # 3. 功成身退：如果玩家成功回到主世界，瞬间将用掉的那个 Marker 记忆实体物理清除，不留任何垃圾
 execute at @s if dimension minecraft:overworld run kill @e[tag=return_point,limit=1,sort=nearest]
 

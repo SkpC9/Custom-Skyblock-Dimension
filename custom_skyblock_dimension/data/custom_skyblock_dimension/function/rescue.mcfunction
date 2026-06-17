@@ -10,6 +10,9 @@ execute as @s at @e[tag=return_point,limit=1,sort=nearest] run tp @s ~ ~ ~
 # 最后的 true 确保隐藏粒子效果。由于数据溢出，玩家落地绝不会跳起来，但 20.27f 瞬间被完全抹平！
 effect give @s minecraft:jump_boost 1 254 true
 
+#拔除物理锁：在乱刀砍死 Marker 之前，先以它的位置为基准，解除该区块的强行加载，释放服务器内存
+execute at @e[tag=return_point,limit=1,sort=nearest] run forceload remove ~ ~ ~ ~
+
 # 3. 过河拆桥：功成身退，清除对应的 marker 实体
 execute at @s if dimension minecraft:overworld run kill @e[tag=return_point,limit=1,sort=nearest]
 

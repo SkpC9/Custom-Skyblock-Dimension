@@ -11,6 +11,10 @@ execute in minecraft:skyblock_dim run forceload add 0 0 0 0
 # 3. 在主世界原地召唤一个隐形的物理锚点（Marker），记忆玩家的绝对坐标和面朝方向
 summon minecraft:marker ~ ~ ~ {Tags:["return_point"]}
 
+#【核心物理锁】：让刚刚生成的这个 Marker，立刻原地锁定它自己所在的区块，强制保持加载状态！
+# 这样不管你跑多远开镜，这个锚点所在的区块都绝对不会被游戏卸载
+execute at @e[tag=return_point,limit=1,sort=nearest] run forceload add ~ ~ ~ ~
+
 # 4. 在空岛维度单次生成一块基岩平台底座，keep 模式绝不重复覆盖玩家盖好的建筑
 execute in minecraft:skyblock_dim run setblock 0 99 0 minecraft:bedrock keep
 
